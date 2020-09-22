@@ -1,0 +1,40 @@
+ALGORITHM problem2 
+VAR
+    htab : HASH_TABLE<INTEGER,INTEGER>;
+    value: INTEGER ;
+    n: INTEGER;
+    m :INTEGER;
+    i,j :INTEGER;
+    sum :INTEGER :=0 ;
+BEGIN
+      
+   // HASH_TABLE<Key_type,Value_type>
+  
+BEGIN
+REPEAT //table 1
+    write(enter table 1 length);
+    read(n);
+UNTIL (n>0)
+FOR i FROM 0 TO n-1 STEP 1  DO
+    read (value)
+    htab.insert(i,value);
+END_FOR
+  REPEAT //table 2
+    write(enter table 2 length);
+    read(m);
+UNTIL (m>0 and m<n)
+FOR i FROM n TO m+n-1 STEP 1  DO
+    read (value);
+    htab.insert(i,value);
+END_FOR
+//sum function with distinct number
+FOR i FROM 0 TO n-1 STEP 1  DO
+    FOR j FROM n TO m+n-1 STEP 1  DO
+        IF (htab.get(i)<>htab.get(j)) THEN
+            sum+=htab.get(i);
+        END_IF
+    END_FOR
+END_FOR
+
+write(sum);
+END
